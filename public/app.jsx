@@ -1,23 +1,29 @@
 var CreationForm = React.createClass({
 	onFormSubmit: function(e){
 		e.preventDefault();
+		var join = {};
 		var name = this.refs.name.value;
+		var message = this.refs.messages.value;
 		if(name.length>0)
 		{
 		this.refs.name.value = '';
-		this.props.onNewGetName(name);
+		join.name = name;
+		
 		}
-		else
+		if(message.length>0)
 		{
-			this.setState({name: name});
+			this.refs.messages.value = '';
+			join.message = message;
 		}
+		this.props.onNewGetName(join);
 	},
 render: function(){
 	return(
 		<div>
-		<p>Hallo Girripillai</p>
+		
 		<form onSubmit={this.onFormSubmit}>
-			<input type="text"  ref="name" />
+			<input type="text" placeholder="Enter the name" ref="name" /><br />
+			<input type="largeText" placeholder="Enter the message" ref="messages" /><br />
 			<button>Click me</button>
 			</form>
 			</div>
@@ -34,24 +40,27 @@ var Creation = React.createClass({
 	getInitialState: function(){
 		return{
 			name: this.props.name,
+			message: this.props.message,
 		};
 	},
-	handlerNewName: function(name, e){
+	handlerNewName: function(join){
 		
 		
 		
-		this.setState({name: name});
+		this.setState(join);
+		
 	
 	},
 	render: function(){
 		var name = this.state.name;
-		var message = this.props.message;
+		var message = this.state.message;
 		return(
 			<div>
-			<h1>Hallo Adhithya lets get this done</h1>
+			
 			<p>My rule is {name}</p>
-			<p>{message + '!!!'}</p>
-			<CreationForm onNewGetName={this.handlerNewName} />
+			<p>Message is {message}</p>
+			<CreationForm onNewGetName={this.handlerNewName} 
+			 />
 
 			
 			</div>
