@@ -6,6 +6,7 @@ render: function() {
   return (
 <div>
     <Nav />
+   {this.props.children}
     <h1>Hallo weather app</h1>
 </div>
 
