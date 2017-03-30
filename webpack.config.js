@@ -1,42 +1,27 @@
-var path = require('path')
-var webpack = require('webpack')
-
 module.exports = {
-    entry:'./src/index.tsx',
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/public/bundle.js'
-    },
-
-    //plugins: [
-      //  new webpack.HotModuleReplacementPlugin()
-    //],
-
-    devtool: 'eval',
-
-    resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
-    },
-
-    module: {
-        loaders: [
-            {
-                test: /\.tsx?$/,
-                loaders: [
-          'react-hot-loader',
-          'ts-loader'
-        ],
-        include: path.join(__dirname, 'src')
-            }
-        ],
-
-        preLoaders: [
-            { test: /\.js$/, loader: 'source-map-loader' }
-        ]
-    },
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-    },
+	entry: './app/app.jsx',
+	output: {
+		path: __dirname,
+		filename: './public/bundle.js'
+	},
+	resolve: {
+		root: __dirname,
+		alias: {
+		Main: 'app/components/Main.jsx',
+		Nav: 'app/components/Nav.jsx'
+		},
+		extensions: ['', '.js', '.jsx']
+	},
+	module: {
+		loaders: [
+		{
+			loader: 'babel-loader',
+			query: {
+				presets: ['react', 'es2015', 'stage-0']
+			},
+			test: /\.jsx?$/,
+			exclude: /(node_modules|bower_components)/
+		}
+		]
+	}
 };
