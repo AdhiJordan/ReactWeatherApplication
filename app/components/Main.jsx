@@ -8,11 +8,14 @@ var Main = (props) => {
 	  return (
 <div>
     <Nav />
-   {props.children}
-    <h1>Hallo weather app</h1>
+    <div className="row">
+    <div className="columns medium-6 large-4 small-centered">
+    {props.children}
+    </div>
+</div>
 </div>
 
     );
 }
 
- module.exports = Main;
+module.exports = Main;
