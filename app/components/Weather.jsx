@@ -11,15 +11,17 @@ var Weather = React.createClass({
 	},
 	handleSearch: function(location) {
 		var that = this;
-		this.setState({isLoading: true})
+		this.setState({isLoading: true});
 		openWeatherMap.getTemp(location).then(function(temp){
+			alert('hai');
 			that.setState({
 					location: location,
 					temp: temp,
 					isLoading: false
 			});
-		}, function(errorMessage) {
-			alert('hai');
+		}, function(errorMessage, location) {
+			
+			console.log(location);
 			that.setState({isLoading: false});
 			alert(errorMessage);
 		});
