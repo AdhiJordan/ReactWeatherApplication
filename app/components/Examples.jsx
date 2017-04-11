@@ -4,7 +4,7 @@ var {Link} = require('react-router');
 var Examples = (props) => {
 			return (
 				<div>
-				<h2 className="text-centered">Weather Example component</h2>
+				<h2 className="text-centered page-title">Weather Example component</h2>
 				<p>Some list of cities</p>
 					<ol>
 						<li>
